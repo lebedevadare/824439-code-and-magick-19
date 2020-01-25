@@ -40,7 +40,7 @@ var renderText = function (ctx, text, x, y) {
   ctx.fillStyle = colorText;
   ctx.fillText(text, x, y);
 };
-var renderColor = function () {
+var getRandomColor = function () {
   return 'hsl(255, 100%, ' + getRandomNumber() + '%)';
 };
 var renderColumn = function (ctx, color, x, y, width, height) {
@@ -59,12 +59,12 @@ window.renderStatistics = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = renderColor();
+      ctx.fillStyle = getRandomColor();
     }
   }
   var x = INDENT_SIDE + TOTAL_WIDTH * i;
   var barHeight = -((BASE_BAR_HEIGHT * times[i]) / maxTime) + GAP * 2;
-  renderColumn(ctx, renderColor(), x, RECTANGLE_Y, COLUM_WIDTH, barHeight);
+  renderColumn(ctx, getRandomColor(), x, RECTANGLE_Y, COLUM_WIDTH, barHeight);
  // ctx.fillStyle = 'rgba(0, 0, 0, 1)';
  // ctx.fillText(names[i], x, TEXT_Y);
   renderText(ctx, names[i], x, TEXT_Y);
