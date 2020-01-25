@@ -35,14 +35,17 @@ var getRandomNumber = function () {
 var getRoundNumber = function (number) {
   return Math.round(number);
 };
+
 var renderText = function (ctx, text, x, y) {
   ctx.font = FONT_TEXT;
   ctx.fillStyle = COLOR_TEXT;
   ctx.fillText(text, x, y);
 };
+
 var getRandomColor = function () {
   return 'hsl(255, 100%, ' + getRandomNumber() + '%)';
 };
+
 var renderColumn = function (ctx, color, x, y, width, height) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, width, height);
