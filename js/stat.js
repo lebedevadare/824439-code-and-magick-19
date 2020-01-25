@@ -1,7 +1,7 @@
 'use strict';
 var CLOUD_WIDTH = 470;
 var CLOUD_HEIGHT = 270;
-var COLUM_WIDTH = 40;
+var COLUMN_WIDTH = 40;
 var GAP = 10;
 var CLOUD_X = 100;
 var CLOUD_Y = 10;
@@ -10,8 +10,8 @@ var RECTANGLE_Y = 240;
 var INDENT_SIDE = 150;
 var TOTAL_WIDTH = 90;
 var BASE_BAR_HEIGHT = 170;
-var colorText = '#000';
-var fontText = '16px PT Mono';
+var COLOR_TEXT = '#000';
+var FONT_TEXT = '16px PT Mono';
 
 var renderCloud = function (ctx, x, y, color, width, height) {
   ctx.fillStyle = color;
@@ -36,8 +36,8 @@ var getRoundNumber = function (number) {
   return Math.round(number);
 };
 var renderText = function (ctx, text, x, y) {
-  ctx.font = fontText;
-  ctx.fillStyle = colorText;
+  ctx.font = FONT_TEXT;
+  ctx.fillStyle = COLOR_TEXT;
   ctx.fillText(text, x, y);
 };
 var getRandomColor = function () {
@@ -56,19 +56,12 @@ window.renderStatistics = function (ctx, names, times) {
   renderText(ctx, 'Список результатов:', CLOUD_X + GAP, 60);
   var maxTime = getMaxElement(times);
   for (var i = 0; i < names.length; i++) {
-    if (names[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else {
-      ctx.fillStyle = getRandomColor();
-    }
+    var columnColor = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : getRandomColor();
+    var x = INDENT_SIDE + TOTAL_WIDTH * i;
+    var barHeight = -((BASE_BAR_HEIGHT * times[i]) / maxTime) + GAP * 2;
+    renderColumn(ctx, columnColor, x, RECTANGLE_Y, COLUMN_WIDTH, barHeight);
+    renderText(ctx, names[i], x, TEXT_Y);
+    renderText(ctx, getRoundNumber(times[i]), x, RECTANGLE_Y + barHeight - GAP);
   }
-  var x = INDENT_SIDE + TOTAL_WIDTH * i;
-  var barHeight = -((BASE_BAR_HEIGHT * times[i]) / maxTime) + GAP * 2;
-  renderColumn(ctx, getRandomColor(), x, RECTANGLE_Y, COLUM_WIDTH, barHeight);
- // ctx.fillStyle = 'rgba(0, 0, 0, 1)';
- // ctx.fillText(names[i], x, TEXT_Y);
-  renderText(ctx, names[i], x, TEXT_Y);
-  renderText(ctx, getRoundNumber(times[i]), x, RECTANGLE_Y + barHeight - GAP);
- // ctx.fillText(getRoundNumber(times[i]), x, RECTANGLE_Y + barHeight - GAP)ж
 };
 
