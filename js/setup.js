@@ -1,8 +1,8 @@
 'use strict';
 var WIZARD_COUNT = 4;
 var userDialog = document.querySelector('.setup');
-var UserDialogSimilar = userDialog.querySelector('.setup-similar');
-var similarListElement = UserDialogSimilar.querySelector('.setup-similar-list');
+var userDialogSimilar = userDialog.querySelector('.setup-similar');
+var similarListElement = userDialogSimilar.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var wizardNames = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var wizardSurnames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -63,4 +63,5 @@ var renderWizards = function (wizardsCount) {
 userDialog.classList.remove('hidden');
 createWizards(WIZARD_COUNT);
 renderWizards(WIZARD_COUNT);
-UserDialogSimilar.classList.remove('hidden');
+userDialogSimilar.classList.remove('hidden');
+
