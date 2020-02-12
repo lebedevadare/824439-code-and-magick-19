@@ -9,11 +9,14 @@ var wizardSurnames = ['да Марья', 'Верон', 'Мирабелла', 'В
 var eyeColors = ['black', 'red', 'blue', 'yellow', 'green'];
 var coatColors = ['101, 137, 164', '241, 43, 107', '146, 100, 161', '56, 159, 117', '215, 210, 55', '0, 0, 0'];
 var wizards = [];
-
+var firewall = ['#ee4830', '#30a8ee', '#5ce6c0', '#5ce6c0', '#e848d5', '#e6e848'];
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
-
+var wizardCoat = document.querySelector('.wizard-coat');
+var wizardEyeColor = document.querySelector('.wizard-eyes')
+var ESC_KEY = 'Escape';
+var ENTER_KEY = 'Enter';
 
 var getRandomInteger = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -71,7 +74,7 @@ renderWizards(WIZARD_COUNT);
 userDialogSimilar.classList.remove('hidden');
 
 var onPopupEscPress = function (evt) {
-  if (evt.key === 'Escape') {
+  if (evt.key === ESC_KEY) {
     closePopup();
   }
 };
@@ -85,13 +88,16 @@ var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
 };
+var addCoatColors = function () {
+  document.querySelector('.wizard-coat').style.fill = getRandomArrayElement(coatColors);
+};
 
 setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
 setupOpen.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
+  if (evt.key === ENTER_KEY) {
     openPopup();
   }
 });
@@ -101,7 +107,15 @@ setupClose.addEventListener('click', function () {
 });
 
 setupClose.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
+  if (evt.key === ENTER_KEY) {
     closePopup();
   }
+});
+
+wizardCoat.addEventListener('click', function () {
+  addCoatColors();
+});
+
+wizardEyeColor.addEventListener('click', function () {
+
 });
