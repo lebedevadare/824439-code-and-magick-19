@@ -74,9 +74,24 @@ createWizards(WIZARD_COUNT);
 renderWizards(WIZARD_COUNT);
 userDialogSimilar.classList.remove('hidden');
 
+var closePopup = function () {
+  userDialog.classList.add('hidden');
+  document.removeEventListener('keydown', onPopupEscPress);
+};
+
 var onPopupEscPress = function (evt) {
   if (evt.key === ESC_KEY) {
     closePopup();
+  }
+};
+
+var onSetupCloseClick = function () {
+  closePopup();
+};
+
+var onSetupOPenKeydown = function (evt) {
+  if (evt.key === ENTER_KEY) {
+    openPopup();
   }
 };
 
@@ -85,33 +100,27 @@ var openPopup = function () {
   document.addEventListener('keydown', onPopupEscPress);
 };
 
-var closePopup = function () {
-  userDialog.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscPress);
+var onSetupOpenClick = function () {
+  openPopup();
 };
+
+var onSetupCloseKeydown = function (evt) {
+  if (evt.key === ENTER_KEY) {
+    closePopup();
+  }
+};
+
 var addCoatColors = function () {
   wizardCoat.style.fill = getRandomCoatColor(coatColors);
 };
 
-setupOpen.addEventListener('click', function () {
-  openPopup();
-});
+setupOpen.addEventListener('click', onSetupOpenClick());
 
-setupOpen.addEventListener('keydown', function (evt) {
-  if (evt.key === ENTER_KEY) {
-    openPopup();
-  }
-});
+setupOpen.addEventListener('keydown', onSetupOPenKeydown());
 
-setupClose.addEventListener('click', function () {
-  closePopup();
-});
+setupClose.addEventListener('click', onSetupCloseClick());
 
-setupClose.addEventListener('keydown', function (evt) {
-  if (evt.key === ENTER_KEY) {
-    closePopup();
-  }
-});
+setupClose.addEventListener('keydown', onSetupCloseKeydown());
 
 wizardCoat.addEventListener('click', function () {
   addCoatColors();
