@@ -39,6 +39,9 @@ var getRandomEyeColor = function () {
   return getRandomArrayElement(eyeColors);
 };
 
+var getRandomFireballColor = function () {
+  return getRandomArrayElement(fireballColors);
+}
 var createRandomWizard = function () {
   return {
     name: getRandomWizardName(),
@@ -127,5 +130,5 @@ wizardCoat.addEventListener('click', function () {
 });
 
 wizardEye.addEventListener('click', function () {
-
+  getRandomFireballColor();
 });
