@@ -93,7 +93,7 @@ var onSetupCloseClick = function () {
   closePopup();
 };
 
-var onSetupOPenKeydown = function (evt) {
+var onSetupOpenKeydown = function (evt) {
   if (evt.key === ENTER_KEY) {
     openPopup();
   }
@@ -118,31 +118,26 @@ var changeCoatColors = function () {
   wizardCoat.style.fill = getRandomCoatColor(coatColors);
 };
 
-var changeFireballColor = function () {
-  wizardFireball.style.fill = getRandomFireballColor();
+var changeFireballColors = function () {
+  wizardFireball.style.fill= getRandomFireballColor(fireballColors);
 };
 
 var changeEyeColors = function () {
-  eyeColors.style.fill = getRandomEyeColor();
-}
+  wizardEye.style.fill = getRandomEyeColor(eyeColors);
+};
 
-setupOpen.addEventListener('click', onSetupOpenClick());
+setupOpen.addEventListener('click', onSetupOpenClick);
 
-setupOpen.addEventListener('keydown', onSetupOPenKeydown());
+setupOpen.addEventListener('keydown', onSetupOpenKeydown);
 
-setupClose.addEventListener('click', onSetupCloseClick());
+setupClose.addEventListener('click', onSetupCloseClick);
 
-setupClose.addEventListener('keydown', onSetupCloseKeydown());
+setupClose.addEventListener('keydown', onSetupCloseKeydown);
 
-wizardCoat.addEventListener('click', function () {
-  changeCoatColors();
-});
+wizardCoat.addEventListener('click', changeCoatColors);
 
-wizardFireball.addEventListener('click', function () {
-  changeFireballColor();
-});
+wizardFireball.addEventListener('click', changeFireballColors);
 
-eyeColors.addEventListener('click', function () {
-  changeEyeColors();
-});
+wizardEye.addEventListener('click', changeEyeColors);
+
 
